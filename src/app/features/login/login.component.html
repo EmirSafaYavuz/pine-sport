@@ -1,0 +1,10 @@
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <h1 class="text-2xl font-bold mb-6">Giriş Yap</h1>
+    <div class="flex flex-col space-y-4 w-64">
+        <button [routerLink]="['/admin-dashboard']" routerLinkActive="router-link-active"  class="bg-blue-500 text-white py-2 px-4 rounded">Admin olarak giriş yap</button>
+        <button [routerLink]="['/school-dashboard']" class="bg-green-500 text-white py-2 px-4 rounded">Okul yöneticisi olarak giriş yap</button>
+        <button [routerLink]="['/branch-dashboard']" class="bg-yellow-500 text-white py-2 px-4 rounded">Şube yöneticisi olarak giriş yap</button>
+        <button [routerLink]="['/student-dashboard']" class="bg-red-500 text-white py-2 px-4 rounded">Öğrenci olarak giriş yap</button>
+        <button [routerLink]="['/parent-dashboard']" class="bg-purple-500 text-white py-2 px-4 rounded">Ebeveyn olarak giriş yap</button>
+    </div>
+</div>
