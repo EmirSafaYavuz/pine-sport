@@ -1,6 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { NgIconComponent, provideIcons } from '@ng-icons/core';
+import { FormsModule } from '@angular/forms';
+import {
+  heroHome,
+  heroAcademicCap,
+  heroUsers,
+  heroCreditCard,
+  heroChartBar,
+  heroDocumentText,
+  heroBell,
+  heroUserGroup,
+  heroCog6Tooth
+} from '@ng-icons/heroicons/outline';
 
 interface MenuItem {
   label: string;
@@ -13,16 +26,28 @@ interface MenuItem {
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, NgIconComponent, FormsModule],
+  providers: [provideIcons({
+    heroHome,
+    heroAcademicCap,
+    heroUsers,
+    heroCreditCard,
+    heroChartBar,
+    heroDocumentText,
+    heroBell,
+    heroUserGroup,
+    heroCog6Tooth
+  })],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
+  searchText: string = '';
   menuItems: MenuItem[] = [
-    { label: 'Ana Sayfa', icon: 'dashboard-icon', route: '/dashboard', isOpen: false },
+    { label: 'Ana Sayfa', icon: 'heroHome', route: '/dashboard', isOpen: false },
     {
       label: 'Okul ve Şube Yönetimi',
-      icon: 'school-icon',
+      icon: 'heroAcademicCap',
       route: '/schools',
       isOpen: false,
       children: [
@@ -34,7 +59,7 @@ export class SidebarComponent {
     },
     {
       label: 'Kursiyer Takip',
-      icon: 'users-icon',
+      icon: 'heroUsers',
       route: '/students',
       isOpen: false,
       children: [
@@ -46,7 +71,7 @@ export class SidebarComponent {
     },
     {
       label: 'Ödeme Yönetimi',
-      icon: 'payment-icon',
+      icon: 'heroCreditCard',
       route: '/payments',
       isOpen: false,
       children: [
@@ -57,7 +82,7 @@ export class SidebarComponent {
     },
     {
       label: 'Sporcu Gelişimi',
-      icon: 'growth-icon',
+      icon: 'heroChartBar',
       route: '/development',
       isOpen: false,
       children: [
@@ -68,7 +93,7 @@ export class SidebarComponent {
     },
     {
       label: 'Raporlar',
-      icon: 'report-icon',
+      icon: 'heroDocumentText',
       route: '/reports',
       isOpen: false,
       children: [
@@ -79,13 +104,13 @@ export class SidebarComponent {
     },
     {
       label: 'Bildirim Yönetimi',
-      icon: 'notification-icon',
+      icon: 'heroBell',
       route: '/notifications',
       isOpen: false
     },
     {
       label: 'Kullanıcı Yönetimi',
-      icon: 'user-icon',
+      icon: 'heroUserGroup',
       route: '/users',
       isOpen: false,
       children: [
@@ -96,9 +121,20 @@ export class SidebarComponent {
     },
     {
       label: 'Ayarlar',
-      icon: 'settings-icon',
+      icon: 'heroCog6Tooth',
       route: '/settings',
       isOpen: false
     }
   ];
+
+  get filteredMenuItems() {
+    if (!this.searchText) return this.menuItems;
+
+    return this.menuItems.filter(item =>
+      item.label.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      item.children?.some(child =>
+        child.label.toLowerCase().includes(this.searchText.toLowerCase())
+      )
+    );
+  }
 }
