@@ -44,7 +44,7 @@ interface MenuItem {
 export class SidebarComponent {
   searchText: string = '';
   menuItems: MenuItem[] = [
-    { label: 'Ana Sayfa', icon: 'heroHome', route: '/dashboard', isOpen: false },
+    { label: 'Ana Sayfa', icon: 'heroHome', route: '/admin-dashboard', isOpen: false },
     {
       label: 'Okul ve Şube Yönetimi',
       icon: 'heroAcademicCap',

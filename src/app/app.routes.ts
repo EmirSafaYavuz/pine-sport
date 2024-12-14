@@ -14,6 +14,7 @@ export const routes: Routes = [
       { path: 'parent-dashboard', loadComponent: () => import('./features/parent-dashboard/parent-dashboard.component').then(m => m.ParentDashboardComponent) },
       { path: 'instructor-dashboard', loadComponent: () => import('./features/instructor-dashboard/instructor-dashboard.component').then(m => m.InstructorDashboardComponent) },
       { path: 'schools', loadComponent: () => import('./features/school/pages/school-list/school-list.component').then(m => m.SchoolListComponent) },
+      { path: 'schools/add', loadComponent: () => import('./features/school/pages/school-add/school-add.component').then(m => m.SchoolAddComponent) },
     ]
   }
 ];
