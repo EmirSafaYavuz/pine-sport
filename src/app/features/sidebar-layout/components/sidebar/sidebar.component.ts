@@ -14,6 +14,7 @@ import {
   heroUserGroup,
   heroCog6Tooth
 } from '@ng-icons/heroicons/outline';
+import { HeaderComponent } from "../header/header.component";
 
 interface MenuItem {
   label: string;
@@ -26,7 +27,7 @@ interface MenuItem {
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterModule, NgIconComponent, FormsModule],
+  imports: [CommonModule, RouterModule, NgIconComponent, FormsModule, HeaderComponent],
   providers: [provideIcons({
     heroHome,
     heroAcademicCap,
