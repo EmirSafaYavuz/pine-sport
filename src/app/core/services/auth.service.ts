@@ -9,7 +9,7 @@ import { Result } from '../models/result.model';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5269/api'; // Replace with your API URL
+  private readonly apiUrl = 'https://localhost:7092/api';
   private readonly TOKEN_KEY = 'auth_token';
   private readonly USER_DATA_KEY = 'user_data';
 
