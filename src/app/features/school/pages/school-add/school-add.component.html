@@ -7,49 +7,99 @@
 
 <!-- Main modal -->
 <div class="fixed inset-0 z-50 overflow-y-auto bg-gray-600 bg-opacity-50 flex items-center justify-center">
-  <div class="relative p-4 w-full max-w-2xl">
-    <div class="relative p-4 bg-white rounded-lg shadow">
-      <div class="flex justify-between items-center pb-4 mb-4 border-b">
-        <h3 class="text-lg font-semibold text-gray-900">
-          Yeni Okul Ekle
+  <div class="relative p-4 w-full max-w-4xl">
+    <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800">
+      <div class="flex justify-between items-center pb-4 mb-4 border-b border-gray-200 dark:border-gray-600">
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+          Okul Kaydı
         </h3>
-        <button type="button" (click)="close()" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
-          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-          </svg>
+        <button type="button" (click)="close()" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 011.414 1.414L11.414 10l4.293 4.293a1 1 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 01-1.414-1.414L8.586 10 4.293 5.707a1 1 010-1.414z" clip-rule="evenodd"></path></svg>
         </button>
       </div>
+
       <form [formGroup]="schoolForm" (ngSubmit)="onSubmit()">
-        <div class="grid gap-4 mb-4 sm:grid-cols-2">
-          <div>
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Okul Adı</label>
-            <input type="text" formControlName="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-          </div>
-          <div>
-            <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Konum</label>
-            <input type="text" formControlName="location" id="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-          </div>
-          <div>
-            <label for="studentCount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Öğrenci Sayısı</label>
-            <input type="number" formControlName="studentCount" id="studentCount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-          </div>
-          <div>
-            <label for="established" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kuruluş Yılı</label>
-            <input type="number" formControlName="established" id="established" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-          </div>
-          <div>
-            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefon</label>
-            <input type="tel" formControlName="phone" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-          </div>
-          <div>
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">E-posta</label>
-            <input type="email" formControlName="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+        <!-- Yönetici Bilgileri Bölümü -->
+        <div class="mb-6">
+          <h4 class="text-lg font-medium text-gray-900 dark:text-white mb-4 pb-2 border-b">Yönetici Bilgileri</h4>
+          <div class="grid gap-4 mb-4 sm:grid-cols-2">
+            <div>
+              <label for="fullName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ad Soyad</label>
+              <input type="text" formControlName="fullName" id="fullName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+
+            <div>
+              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">E-posta</label>
+              <input type="email" formControlName="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+
+            <div>
+              <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Şifre</label>
+              <input type="password" formControlName="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+
+            <div>
+              <label for="mobilePhone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefon</label>
+              <input type="tel" formControlName="mobilePhone" id="mobilePhone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+
+            <div>
+              <label for="birthDate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Doğum Tarihi</label>
+              <input type="date" formControlName="birthDate" id="birthDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+
+            <div>
+              <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cinsiyet</label>
+              <select formControlName="gender" id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                <option [value]="0">Erkek</option>
+                <option [value]="1">Kadın</option>
+              </select>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Adres</label>
+              <textarea formControlName="address" id="address" rows="2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"></textarea>
+            </div>
           </div>
         </div>
-        <button type="submit" [disabled]="!schoolForm.valid" class="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-          <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-          Okul Ekle
-        </button>
+
+        <!-- Okul Bilgileri Bölümü -->
+        <div class="mb-6">
+          <h4 class="text-lg font-medium text-gray-900 dark:text-white mb-4 pb-2 border-b">Okul Bilgileri</h4>
+          <div class="grid gap-4 mb-4 sm:grid-cols-2">
+            <div>
+              <label for="schoolName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Okul Adı</label>
+              <input type="text" formControlName="schoolName" id="schoolName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+
+            <div>
+              <label for="schoolPhone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Okul Telefonu</label>
+              <input type="tel" formControlName="schoolPhone" id="schoolPhone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="schoolAddress" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Okul Adresi</label>
+              <textarea formControlName="schoolAddress" id="schoolAddress" rows="2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"></textarea>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="notes" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notlar</label>
+              <textarea formControlName="notes" id="notes" rows="2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end space-x-4">
+          <button type="button" (click)="fillSampleData()" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">
+            Test Verisi Doldur
+          </button>
+          <button type="button" (click)="close()" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">
+            İptal
+          </button>
+          <button type="submit" [disabled]="!schoolForm.valid" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Kaydet
+          </button>
+        </div>
       </form>
     </div>
   </div>

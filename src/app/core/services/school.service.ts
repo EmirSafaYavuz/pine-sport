@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Result } from '../models/result.model';
 import { School } from '../models/school.model';
+import { SchoolRegister } from '../models/school-register.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,13 @@ export class SchoolService {
 
   getSchools(): Observable<Result<School[]>> {
     return this.http.get<Result<School[]>>(`${this.apiUrl}/school`);
+  }
+
+  register(schoolData: SchoolRegister): Observable<Result<any>> {
+    return this.http.post<Result<any>>(`${this.apiUrl}/school/register`, schoolData);
+  }
+
+  getSchoolById(id: number): Observable<Result<School>> {
+    return this.http.get<Result<School>>(`${this.apiUrl}/school/${id}`);
   }
 }
