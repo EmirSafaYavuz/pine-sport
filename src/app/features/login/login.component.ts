@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {
     this.loginForm = this.fb.group({
-      email: ['emirsafayavuz2@gmail.com', [Validators.required, Validators.email]],
-      password: ['Emirsafa69!', Validators.required]
+      email: ['ydrmzz03@gmail.com', [Validators.required, Validators.email]],
+      password: ['Yagmur69!', Validators.required]
     });
   }
 
@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
     localStorage.removeItem('auth_token');
   }
 
-  private getRoleBasedRoute(role: Role): string {
-    const roleName = role.name.toLowerCase();
+  private getRoleBasedRoute(role: string): string {
+    const roleName = role.toLowerCase();
     switch (roleName) {
       case 'admin':
         return '/admin-dashboard';

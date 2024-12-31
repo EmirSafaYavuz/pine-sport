@@ -5,6 +5,8 @@ import { LoginModel } from '../models/login.model';
 import { LoginResponse } from '../models/login-response.model';
 import { Result } from '../models/result.model';
 
+export type UserRole = 'admin' | 'school' | 'branch' | 'student' | 'parent' | 'instructor';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -38,5 +40,11 @@ export class AuthService {
   getUserData(): LoginResponse | null {
     const userData = localStorage.getItem(this.USER_DATA_KEY);
     return userData ? JSON.parse(userData) : null;
+  }
+
+  getCurrentUserRole(): UserRole {
+    // This should be implemented based on your authentication logic
+    // For now, returning a mock value
+    return localStorage.getItem('userRole') as UserRole || 'admin';
   }
 }
