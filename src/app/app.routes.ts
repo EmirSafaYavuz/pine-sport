@@ -16,7 +16,8 @@ export const routes: Routes = [
       { path: 'schools', loadComponent: () => import('./features/school/pages/school-list/school-list.component').then(m => m.SchoolListComponent) },
       { path: 'schools/add', loadComponent: () => import('./features/school/pages/school-add/school-add.component').then(m => m.SchoolAddComponent) },
       { path: 'schools/:id', loadComponent: () => import('./features/school/pages/school-detail/school-detail.component').then(m => m.SchoolDetailComponent) },
-      { path: 'branches', loadComponent: () => import('./features/branches/pages/branch-list/branch-list.component').then(m => m.BranchListComponent) },
+      { path: 'branches', loadComponent: () => import('./features/branch/pages/branch-list/branch-list.component').then(m => m.BranchListComponent) },
+      { path: 'trainers', loadComponent: () => import('./features/trainer/pages/trainer-list/trainer-list.component').then(m => m.TrainerListComponent) },
     ]
   }
 ];
