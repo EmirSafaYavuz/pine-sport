@@ -45,10 +45,8 @@ export class SchoolListComponent implements OnInit {
   loadSchools() {
     this.schoolService.getSchools().subscribe({
       next: (result) => {
-        if (result.success) {
-          this.originalData = result.data ?? [];
-          this.rowData = [...this.originalData];
-        }
+        this.originalData = result ?? [];
+        this.rowData = [...this.originalData];
       },
       error: (error) => {
         console.error('Error loading schools:', error);

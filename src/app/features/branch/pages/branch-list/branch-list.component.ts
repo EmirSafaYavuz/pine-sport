@@ -7,17 +7,19 @@ import { BranchService } from '../../../../core/services/branch.service';
 import { Branch } from '../../../../core/models/branch.model';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BranchRegisterComponent } from '../branch-register/branch-register.component';
 
 @Component({
   selector: 'app-branch-list',
   standalone: true,
-  imports: [AgGridModule, BreadcrumbComponent, CommonModule, FormsModule],
+  imports: [AgGridModule, BreadcrumbComponent, CommonModule, FormsModule, BranchRegisterComponent],
   templateUrl: './branch-list.component.html'
 })
 export class BranchListComponent implements OnInit {
   rowData: Branch[] = [];
   originalData: Branch[] = [];
   searchText: string = '';
+  showAddModal = false;
 
   columnDefs: ColDef[] = [
     { field: 'id', headerName: 'ID', sortable: true, filter: true },
@@ -68,5 +70,14 @@ export class BranchListComponent implements OnInit {
   onRowClicked(event: any) {
     const branchId = event.data.id;
     this.router.navigate(['/branches', branchId]);
+  }
+
+  toggleAddModal() {
+    this.showAddModal = !this.showAddModal;
+  }
+
+  onBranchAdded() {
+    this.loadBranches();
+    this.showAddModal = false;
   }
 }

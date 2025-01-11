@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BranchCreateModel } from '../models/branch-create-model';
+import { BranchRegisterModel } from '../models/branch-register-model';
 import { Result } from '../models/result.model';
 import { Branch } from '../models/branch.model';
 
@@ -17,7 +17,11 @@ export class BranchService {
     return this.http.get<Result<Branch[]>>(`${this.apiUrl}/branch`);
   }
 
-  createBranch(branch: BranchCreateModel): Observable<Result<any>> {
+  registerBranch(branch: BranchRegisterModel): Observable<Result<any>> {
     return this.http.post<Result<any>>(`${this.apiUrl}/branch`, branch);
+  }
+
+  getBranchById(id: number): Observable<Result<Branch>> {
+    return this.http.get<Result<Branch>>(`${this.apiUrl}/branch/${id}`);
   }
 }

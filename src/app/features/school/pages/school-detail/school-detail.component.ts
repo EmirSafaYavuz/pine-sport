@@ -29,7 +29,7 @@ export class SchoolDetailComponent implements OnInit {
   private fetchSchoolDetails(id: number) {
     this.schoolService.getSchoolById(id).subscribe({
       next: (response) => {
-        this.school = response.data ?? undefined;
+        this.school = response ?? undefined;
         this.loading = false;
       },
       error: (err) => {

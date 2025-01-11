@@ -13,15 +13,15 @@ export class SchoolService {
 
   constructor(private http: HttpClient) { }
 
-  getSchools(): Observable<Result<School[]>> {
-    return this.http.get<Result<School[]>>(`${this.apiUrl}/school`);
+  getSchools(): Observable<School[]> {
+    return this.http.get<School[]>(`${this.apiUrl}/school`);
   }
 
   register(schoolData: SchoolRegister): Observable<Result<any>> {
     return this.http.post<Result<any>>(`${this.apiUrl}/school/register`, schoolData);
   }
 
-  getSchoolById(id: number): Observable<Result<School>> {
-    return this.http.get<Result<School>>(`${this.apiUrl}/school/${id}`);
+  getSchoolById(id: number): Observable<School> {
+    return this.http.get<School>(`${this.apiUrl}/school/${id}`);
   }
 }
