@@ -15,7 +15,7 @@ export const routes: Routes = [
       { path: 'trainer-dashboard', loadComponent: () => import('./features/dashboard/trainer-dashboard/trainer-dashboard.component').then(m => m.TrainerDashboardComponent) },
       { path: 'schools', loadChildren: () => import('./features/school/school.routes').then(m => m.SCHOOL_ROUTES) },
       { path: 'branches', loadChildren: () => import('./features/branch/branch.routes').then(m => m.BRANCH_ROUTES) },
-      { path: 'trainers', loadComponent: () => import('./features/trainer/pages/trainer-list/trainer-list.component').then(m => m.TrainerListComponent) },
+      { path: 'trainers', loadChildren: () => import('./features/trainer/trainer.routes').then(m => m.TRAINER_ROUTES) },
     ]
   }
 ];

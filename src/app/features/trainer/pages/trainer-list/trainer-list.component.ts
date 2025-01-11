@@ -1,23 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { AgGridModule } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community';
-import { BreadcrumbComponent } from "../../../../core/components/breadcrumb/breadcrumb.component";
 import { CommonModule } from '@angular/common';
 import { TrainerService } from '../../../../core/services/trainer.service';
 import { Trainer } from '../../../../core/models/trainer.model';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { GenericListComponent } from '../../../../core/components/generic-list/generic-list.component';
 
 @Component({
   selector: 'app-trainer-list',
   standalone: true,
-  imports: [AgGridModule, BreadcrumbComponent, CommonModule, FormsModule],
-  templateUrl: './trainer-list.component.html'
+  imports: [CommonModule, GenericListComponent],
+  template: `
+    <div class="w-full p-4 h-[calc(100vh-10rem)]">
+      <app-generic-list
+        title="Eğitmenler"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        (rowClicked)="handleRowClick($event)"
+        (addClicked)="handleAddClick()"
+      >
+      </app-generic-list>
+    </div>
+  `
 })
 export class TrainerListComponent implements OnInit {
   rowData: Trainer[] = [];
-  originalData: Trainer[] = [];
-  searchText: string = '';
 
   columnDefs: ColDef[] = [
     { field: 'id', headerName: 'ID', sortable: true, filter: true },
@@ -29,10 +36,6 @@ export class TrainerListComponent implements OnInit {
     { field: 'specialization', headerName: 'Uzmanlık', sortable: true, filter: true }
   ];
 
-  defaultColDef = {
-    cellStyle: { cursor: 'pointer' }
-  };
-
   constructor(private trainerService: TrainerService, private router: Router) {}
 
   ngOnInit() {
@@ -43,8 +46,7 @@ export class TrainerListComponent implements OnInit {
     this.trainerService.getTrainers().subscribe({
       next: (result) => {
         if (result.success) {
-          this.originalData = result.data ?? [];
-          this.rowData = [...this.originalData];
+          this.rowData = result.data ?? [];
         }
       },
       error: (error) => {
@@ -53,23 +55,12 @@ export class TrainerListComponent implements OnInit {
     });
   }
 
-  onSearch(event: Event) {
-    const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
-    if (!searchTerm) {
-      this.rowData = [...this.originalData];
-      return;
-    }
-
-    this.rowData = this.originalData.filter(trainer =>
-      trainer.fullName.toLowerCase().includes(searchTerm) ||
-      trainer.email.toLowerCase().includes(searchTerm) ||
-      trainer.mobilePhone.includes(searchTerm) ||
-      trainer.specialization.toLowerCase().includes(searchTerm)
-    );
-  }
-
-  onRowClicked(event: any) {
+  handleRowClick(event: any) {
     const trainerId = event.data.id;
     this.router.navigate(['/trainers', trainerId]);
+  }
+
+  handleAddClick() {
+    this.router.navigate(['/trainers/register']);
   }
 }

@@ -17,7 +17,7 @@ export class SchoolService {
     return this.http.get<School[]>(`${this.apiUrl}/school`);
   }
 
-  register(schoolData: SchoolRegister): Observable<Result<any>> {
+  registerSchool(schoolData: SchoolRegister): Observable<Result<any>> {
     return this.http.post<Result<any>>(`${this.apiUrl}/school/register`, schoolData);
   }
 
