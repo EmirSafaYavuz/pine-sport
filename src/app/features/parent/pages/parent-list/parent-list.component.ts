@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ColDef } from 'ag-grid-community';
 import { CommonModule } from '@angular/common';
-import { BranchService } from '../../../../core/services/branch.service';
-import { Branch } from '../../../../core/models/branch.model';
+import { ParentService } from '../../../../core/services/parent.service';
 import { Router } from '@angular/router';
 import { GenericListComponent } from '../../../../core/components/generic-list/generic-list.component';
 
 @Component({
-  selector: 'app-branch-list',
+  selector: 'app-parent-list',
   standalone: true,
   imports: [CommonModule, GenericListComponent],
   template: `
     <div class="w-full p-4 h-[calc(100vh-10rem)]">
       <app-generic-list
-        title="Şubeler"
+        title="Veliler"
         [rowData]="rowData"
         [columnDefs]="columnDefs"
         (rowClicked)="handleRowClick($event)"
@@ -23,41 +22,40 @@ import { GenericListComponent } from '../../../../core/components/generic-list/g
     </div>
   `
 })
-export class BranchListComponent implements OnInit {
-  rowData: Branch[] = [];
-  showAddModal = false;
+export class ParentListComponent implements OnInit {
+  rowData: any[] = [];
 
   columnDefs: ColDef[] = [
     { field: 'id', headerName: 'ID', sortable: true, filter: true },
-    { field: 'name', headerName: 'Şube Adı', sortable: true, filter: true },
-    { field: 'address', headerName: 'Adres', sortable: true, filter: true },
+    { field: 'name', headerName: 'Ad', sortable: true, filter: true },
+    { field: 'surname', headerName: 'Soyad', sortable: true, filter: true },
     { field: 'phone', headerName: 'Telefon', sortable: false, filter: true },
-    { field: 'schoolId', headerName: 'Okul ID', sortable: true, filter: true }
+    { field: 'email', headerName: 'E-posta', sortable: true, filter: true }
   ];
 
-  constructor(private branchService: BranchService, private router: Router) {}
+  constructor(private parentService: ParentService, private router: Router) {}
 
   ngOnInit() {
-    this.loadBranches();
+    this.loadParents();
   }
 
-  loadBranches() {
-    this.branchService.getBranches().subscribe({
+  loadParents() {
+    this.parentService.getParents().subscribe({
       next: (result) => {
         this.rowData = result ?? [];
       },
       error: (error) => {
-        console.error('Error loading branches:', error);
+        console.error('Error loading parents:', error);
       }
     });
   }
 
   handleRowClick(event: any) {
-    const branchId = event.data.id;
-    this.router.navigate(['/branches', branchId]);
+    const parentId = event.data.id;
+    this.router.navigate(['/parents', parentId]);
   }
 
   handleAddClick() {
-    this.router.navigate(['/branches/register']);
+    this.router.navigate(['/parents/register']);
   }
 }

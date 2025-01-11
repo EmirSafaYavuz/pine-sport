@@ -37,15 +37,17 @@ export class LoginComponent implements OnInit {
     const roleName = role.toLowerCase();
     switch (roleName) {
       case 'admin':
-        return '/admin-dashboard';
+        return '/dashboard/admin';
       case 'school':
-        return '/school-dashboard';
+        return '/dashboard/school';
       case 'branch':
-        return '/branch-dashboard';
+        return '/dashboard/branch';
       case 'student':
-        return '/student-dashboard';
+        return '/dashboard/student';
       case 'parent':
-        return '/parent-dashboard';
+        return '/dashboard/parent';
+      case 'trainer':
+        return '/dashboard/trainer';
       default:
         return '/';
     }

@@ -13,8 +13,8 @@ export class BranchService {
 
   constructor(private http: HttpClient) { }
 
-  getBranches(): Observable<Result<Branch[]>> {
-    return this.http.get<Result<Branch[]>>(`${this.apiUrl}/branch`);
+  getBranches(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/branch`);
   }
 
   registerBranch(branch: BranchRegisterModel): Observable<Result<any>> {

@@ -7,15 +7,12 @@ export const routes: Routes = [
     path: '',
     loadComponent: () => import('./features/sidebar-layout/sidebar-layout.component').then(m => m.SidebarLayoutComponent),
     children: [
-      { path: 'admin-dashboard', loadComponent: () => import('./features/dashboard/admin-dashboard/admin-dashboard.component').then(m => m.AdminDashboardComponent) },
-      { path: 'school-dashboard', loadComponent: () => import('./features/dashboard/school-dashboard/school-dashboard.component').then(m => m.SchoolDashboardComponent) },
-      { path: 'branch-dashboard', loadComponent: () => import('./features/dashboard/branch-dashboard/branch-dashboard.component').then(m => m.BranchDashboardComponent) },
-      { path: 'student-dashboard', loadComponent: () => import('./features/dashboard/student-dashboard/student-dashboard.component').then(m => m.StudentDashboardComponent) },
-      { path: 'parent-dashboard', loadComponent: () => import('./features/dashboard/parent-dashboard/parent-dashboard.component').then(m => m.ParentDashboardComponent) },
-      { path: 'trainer-dashboard', loadComponent: () => import('./features/dashboard/trainer-dashboard/trainer-dashboard.component').then(m => m.TrainerDashboardComponent) },
+      { path: 'dashboard', loadChildren: () => import('./features/dashboard/dashboard.routes').then(m => m.DASHBOARD_ROUTES) },
       { path: 'schools', loadChildren: () => import('./features/school/school.routes').then(m => m.SCHOOL_ROUTES) },
       { path: 'branches', loadChildren: () => import('./features/branch/branch.routes').then(m => m.BRANCH_ROUTES) },
       { path: 'trainers', loadChildren: () => import('./features/trainer/trainer.routes').then(m => m.TRAINER_ROUTES) },
+      { path: 'students', loadChildren: () => import('./features/student/student.routes').then(m => m.STUDENT_ROUTES) },
+      { path: 'parents', loadChildren: () => import('./features/parent/parent.routes').then(m => m.PARENT_ROUTES) },
     ]
   }
 ];

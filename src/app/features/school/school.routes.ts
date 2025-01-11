@@ -1,4 +1,3 @@
-// business.routes.ts
 import { Routes } from '@angular/router';
 
 export const SCHOOL_ROUTES: Routes = [

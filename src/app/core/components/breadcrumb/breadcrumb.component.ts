@@ -36,13 +36,22 @@ export class BreadcrumbComponent implements OnInit {
     const paths = this.router.url.split('/').filter(path => path);
     this.breadcrumbs = [];
 
-    // Always add home
-    this.breadcrumbs.push({ label: 'Ana Sayfa', url: '/' });
+    // Ana sayfada sadece "Ana Sayfa" göster
+    if (this.isHomePage(paths)) {
+      this.breadcrumbs.push({ label: 'Ana Sayfa', url: '/' });
+      return;
+    }
 
-    // Build the rest of the breadcrumbs
+    // Build breadcrumbs
     let url = '';
-    paths.forEach(path => {
+    paths.forEach((path, index) => {
       url += `/${path}`;
+
+      // Dashboard ve alt sayfaları için özel kontrol
+      if (path === 'dashboard' && paths[index + 1]) {
+        return; // Dashboard kelimesini atla
+      }
+
       this.breadcrumbs.push({
         label: this.formatLabel(path),
         url: url
@@ -50,18 +59,42 @@ export class BreadcrumbComponent implements OnInit {
     });
   }
 
+  private isHomePage(paths: string[]): boolean {
+    if (paths.length === 2 && paths[0] === 'dashboard') {
+      const secondPath = paths[1];
+      return ['admin', 'school', 'branch', 'student', 'parent', 'trainer'].includes(secondPath);
+    }
+    return false;
+  }
+
   private formatLabel(path: string): string {
-    // Convert URL segments to readable labels
     const labels: { [key: string]: string } = {
+      // Dashboard routes
+      'dashboard': 'Panel',
+      'admin': 'Admin Paneli',
+      'school': 'Okul Paneli',
+      'branch': 'Şube Paneli',
+      'student': 'Öğrenci Paneli',
+      'parent': 'Veli Paneli',
+      'trainer': 'Eğitmen Paneli',
+
+      // Main routes
       'schools': 'Okullar',
       'branches': 'Şubeler',
-      'add': 'Ekle',
-      'admin-dashboard': 'Admin Paneli',
-      'school-dashboard': 'Okul Paneli',
-      // Add more mappings as needed
+      'students': 'Öğrenciler',
+      'parents': 'Veliler',
+      'trainers': 'Eğitmenler',
+
+      // Common actions
+      'register': 'Kayıt',
+      'detail': 'Detay',
     };
 
-    return labels[path] || path;
+    return labels[path] || this.capitalizeFirstLetter(path);
+  }
+
+  private capitalizeFirstLetter(string: string): string {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   navigateToHome() {
@@ -71,14 +104,14 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   private getDashboardRouteByRole(role: UserRole): string {
-    const dashboardRoutes = {
-      admin: '/admin-dashboard',
-      school: '/school-dashboard',
-      branch: '/branch-dashboard',
-      student: '/student-dashboard',
-      parent: '/parent-dashboard',
-      instructor: '/instructor-dashboard'
+    const dashboardRoutes: { [key: string]: string } = {
+      admin: '/dashboard/admin',
+      school: '/dashboard/school',
+      branch: '/dashboard/branch',
+      student: '/dashboard/student',
+      parent: '/dashboard/parent',
+      trainer: '/dashboard/trainer'
     };
-    return dashboardRoutes[role];
+    return dashboardRoutes[role] || '/';
   }
 }
