@@ -1,24 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { AgGridModule } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community';
-import { BreadcrumbComponent } from "../../../../core/components/breadcrumb/breadcrumb.component";
 import { CommonModule } from '@angular/common';
 import { BranchService } from '../../../../core/services/branch.service';
 import { Branch } from '../../../../core/models/branch.model';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BranchRegisterComponent } from '../branch-register/branch-register.component';
+import { GenericListComponent } from '../../../../core/components/generic-list/generic-list.component';
 
 @Component({
   selector: 'app-branch-list',
   standalone: true,
-  imports: [AgGridModule, BreadcrumbComponent, CommonModule, FormsModule, BranchRegisterComponent],
-  templateUrl: './branch-list.component.html'
+  imports: [CommonModule, GenericListComponent],
+  template: `
+    <div class="w-full p-4 h-[calc(100vh-10rem)]">
+      <app-generic-list
+        title="Şubeler"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        (rowClicked)="handleRowClick($event)"
+        (addClicked)="handleAddClick()"
+      >
+      </app-generic-list>
+    </div>
+  `
 })
 export class BranchListComponent implements OnInit {
   rowData: Branch[] = [];
-  originalData: Branch[] = [];
-  searchText: string = '';
   showAddModal = false;
 
   columnDefs: ColDef[] = [
@@ -28,10 +34,6 @@ export class BranchListComponent implements OnInit {
     { field: 'phone', headerName: 'Telefon', sortable: false, filter: true },
     { field: 'schoolId', headerName: 'Okul ID', sortable: true, filter: true }
   ];
-
-  defaultColDef = {
-    cellStyle: { cursor: 'pointer' }
-  };
 
   constructor(private branchService: BranchService, private router: Router) {}
 
@@ -43,8 +45,7 @@ export class BranchListComponent implements OnInit {
     this.branchService.getBranches().subscribe({
       next: (result) => {
         if (result.success) {
-          this.originalData = result.data ?? [];
-          this.rowData = [...this.originalData];
+          this.rowData = result.data ?? [];
         }
       },
       error: (error) => {
@@ -53,31 +54,12 @@ export class BranchListComponent implements OnInit {
     });
   }
 
-  onSearch(event: Event) {
-    const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
-    if (!searchTerm) {
-      this.rowData = [...this.originalData];
-      return;
-    }
-
-    this.rowData = this.originalData.filter(branch =>
-      branch.name.toLowerCase().includes(searchTerm) ||
-      branch.address.toLowerCase().includes(searchTerm) ||
-      branch.phone.includes(searchTerm)
-    );
-  }
-
-  onRowClicked(event: any) {
+  handleRowClick(event: any) {
     const branchId = event.data.id;
     this.router.navigate(['/branches', branchId]);
   }
 
-  toggleAddModal() {
-    this.showAddModal = !this.showAddModal;
-  }
-
-  onBranchAdded() {
-    this.loadBranches();
-    this.showAddModal = false;
+  handleAddClick() {
+    this.router.navigate(['/branches/register']);
   }
 }

@@ -5,13 +5,23 @@ import { SchoolService } from '../../../../core/services/school.service';
 import { School } from '../../../../core/models/school.model';
 import { Router } from '@angular/router';
 import { GenericListComponent } from '../../../../core/components/generic-list/generic-list.component';
-import { SchoolAddComponent } from '../school-add/school-add.component';
 
 @Component({
   selector: 'app-school-list',
   standalone: true,
-  imports: [CommonModule, GenericListComponent, SchoolAddComponent],
-  templateUrl: './school-list.component.html'
+  imports: [CommonModule, GenericListComponent],
+  template: `
+    <div class="w-full p-4 h-[calc(100vh-10rem)]">
+      <app-generic-list
+        title="Okullar"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        (rowClicked)="handleRowClick($event)"
+        (addClicked)="handleAddClick()"
+      >
+      </app-generic-list>
+    </div>
+  `
 })
 export class SchoolListComponent implements OnInit {
   rowData: School[] = [];
@@ -50,6 +60,6 @@ export class SchoolListComponent implements OnInit {
   }
 
   handleAddClick() {
-    this.router.navigate(['/schools/add']);
+    this.router.navigate(['/schools/register']);
   }
 }

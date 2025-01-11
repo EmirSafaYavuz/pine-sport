@@ -8,16 +8,20 @@ import { ToastrService } from 'ngx-toastr';
 import { SCHOOL_FORM_FIELDS } from '../../models/school-form.model';
 
 @Component({
-  selector: 'app-school-add',
+  selector: 'app-school-register',
   standalone: true,
   imports: [CommonModule, GenericFormComponent],
   template: `
     <div class="container mx-auto p-4">
       <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold">Yeni Okul Ekle</h1>
-        <button (click)="navigateBack()" class="btn-secondary">Geri Dön</button>
+        <h1 class="text-2xl font-bold text-gray-900">Yeni Okul Ekle</h1>
+        <button
+          (click)="navigateBack()"
+          class="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 transition-colors text-sm">
+          Geri Dön
+        </button>
       </div>
-      <div class="bg-white rounded-lg shadow-md p-6">
+      <div class="bg-gray-50 rounded-lg p-6">
         <app-generic-form
           [form]="schoolForm"
           [fields]="formFields"
@@ -27,7 +31,7 @@ import { SCHOOL_FORM_FIELDS } from '../../models/school-form.model';
     </div>
   `
 })
-export class SchoolAddComponent {
+export class SchoolRegisterComponent {
   schoolForm: FormGroup;
   formFields = SCHOOL_FORM_FIELDS;
 
