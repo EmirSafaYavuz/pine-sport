@@ -50,11 +50,6 @@ export class SchoolListComponent implements OnInit {
   }
 
   handleAddClick() {
-    this.showAddModal = true;
-  }
-
-  onSchoolAdded() {
-    this.loadSchools();
-    this.showAddModal = false;
+    this.router.navigate(['/schools/add']);
   }
 }

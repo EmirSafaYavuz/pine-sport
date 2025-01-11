@@ -8,17 +8,25 @@ import { AgGridAngular } from 'ag-grid-angular';
   imports: [AgGridAngular],
   template: `
     <div class="flex items-center justify-between mb-2">
-      <h1 class="text-2xl font-semibold">{{ title }}</h1>
+      <h1 class="text-2xl font-semibold text-gray-800">{{ title }}</h1>
       <div class="flex items-center gap-4">
         <div class="relative">
           <input
             type="text"
             placeholder="Ara..."
             (input)="onSearch($event)"
-            class="input-class"
+            class="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-gray-700 w-64"
           />
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-3 top-2.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
         </div>
-        <button (click)="openAddModal()" class="button-class">Yeni Ekle</button>
+        <button (click)="openAddModal()" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90 flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          Yeni Ekle
+        </button>
       </div>
     </div>
     <div class="h-[calc(100vh-15rem)]">

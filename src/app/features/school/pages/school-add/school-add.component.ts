@@ -1,83 +1,67 @@
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SchoolService } from '../../../../core/services/school.service';
-import { SchoolRegister } from '../../../../core/models/school-register.model';
+import { GenericFormComponent } from '../../../../core/components/generic-form/generic-form.component';
 import { ToastrService } from 'ngx-toastr';
+import { SCHOOL_FORM_FIELDS } from '../../models/school-form.model';
 
 @Component({
   selector: 'app-school-add',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './school-add.component.html',
-  styleUrls: ['./school-add.component.css']
+  imports: [CommonModule, GenericFormComponent],
+  template: `
+    <div class="container mx-auto p-4">
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">Yeni Okul Ekle</h1>
+        <button (click)="navigateBack()" class="btn-secondary">Geri Dön</button>
+      </div>
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <app-generic-form
+          [form]="schoolForm"
+          [fields]="formFields"
+          (formSubmit)="onSubmit()"
+        ></app-generic-form>
+      </div>
+    </div>
+  `
 })
-export class SchoolAddComponent implements OnInit {
-  @Output() closeModal = new EventEmitter<void>();
-  @Output() schoolAdded = new EventEmitter<void>();
-
+export class SchoolAddComponent {
   schoolForm: FormGroup;
+  formFields = SCHOOL_FORM_FIELDS;
 
   constructor(
     private fb: FormBuilder,
     private schoolService: SchoolService,
+    private router: Router,
     private toastr: ToastrService
   ) {
     this.schoolForm = this.fb.group({
-      fullName: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      mobilePhone: ['', [Validators.required]],
-      birthDate: ['', [Validators.required]],
-      gender: [0, [Validators.required]],
-      address: ['', [Validators.required]],
-      notes: [''],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      schoolName: ['', [Validators.required]],
-      schoolAddress: ['', [Validators.required]],
-      schoolPhone: ['', [Validators.required]]
+      name: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required],
+      managerName: ['', Validators.required],
+      managerPhone: ['', Validators.required],
+      managerEmail: ['', [Validators.required, Validators.email]]
     });
   }
-
-  ngOnInit(): void {}
 
   onSubmit() {
     if (this.schoolForm.valid) {
       this.schoolService.register(this.schoolForm.value).subscribe({
-        next: (response) => {
-          this.toastr.success('Okul başarıyla eklendi', 'Başarılı');
-          this.close();
-          this.schoolForm.reset();
-          this.schoolAdded.emit();
+        next: () => {
+          this.toastr.success('Okul başarıyla eklendi');
+          this.router.navigate(['/schools']);
         },
         error: (error) => {
-          // API'den gelen hata mesajını göster
-          const errorMessage = error.error?.message || 'Okul eklenirken bir hata oluştu';
-          this.toastr.error(errorMessage, 'Hata');
-          console.error('Registration failed:', error);
+          this.toastr.error(error.error?.message || 'Bir hata oluştu');
         }
       });
-    } else {
-      this.toastr.warning('Lütfen tüm gerekli alanları doldurun', 'Uyarı');
     }
   }
 
-  fillSampleData() {
-    this.schoolForm.patchValue({
-      fullName: 'Ahmet Yılmaz',
-      email: 'ahmet.yilmaz@example.com',
-      mobilePhone: '5551234567',
-      birthDate: '1980-01-01',
-      gender: 0,
-      address: 'Atatürk Cad. No:123 Çankaya/Ankara',
-      notes: 'Örnek not',
-      password: 'test123456',
-      schoolName: 'Cumhuriyet İlköğretim Okulu',
-      schoolAddress: 'Cumhuriyet Mah. Okul Sok. No:1 Çankaya/Ankara',
-      schoolPhone: '3121234567'
-    });
-  }
-
-  close() {
-    this.closeModal.emit();
+  navigateBack() {
+    this.router.navigate(['/schools']);
   }
 }
