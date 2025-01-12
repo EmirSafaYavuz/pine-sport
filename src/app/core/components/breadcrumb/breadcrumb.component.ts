@@ -14,7 +14,7 @@ interface BreadcrumbItem {
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './breadcrumb.component.html',
-  styleUrl: './breadcrumb.component.css'
+  styleUrls: ['./breadcrumb.component.css']
 })
 export class BreadcrumbComponent implements OnInit {
   breadcrumbs: BreadcrumbItem[] = [];
@@ -25,6 +25,10 @@ export class BreadcrumbComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // Generate breadcrumbs on initial load
+    this.generateBreadcrumbs();
+
+    // Listen to navigation events and regenerate breadcrumbs
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
@@ -99,8 +103,12 @@ export class BreadcrumbComponent implements OnInit {
 
   navigateToHome() {
     const role = this.authService.getCurrentUserRole();
-    const dashboardRoute = this.getDashboardRouteByRole(role);
-    this.router.navigate([dashboardRoute]);
+    if (role) {
+        const dashboardRoute = this.getDashboardRouteByRole(role);
+        this.router.navigate([dashboardRoute]);
+    } else {
+        this.router.navigate(['/']); // Rol yoksa ana sayfaya yönlendir
+    }
   }
 
   private getDashboardRouteByRole(role: UserRole): string {

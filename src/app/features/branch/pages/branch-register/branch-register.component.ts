@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { SchoolService } from '../../../../core/services/school.service';
 import { GenericFormComponent } from '../../../../core/components/generic-form/generic-form.component';
 import { ToastrService } from 'ngx-toastr';
 import { BRANCH_FORM_FIELDS } from '../../models/branch-form.model';
+import { ErrorResponse } from '../../../../core/models/error-response.model';
 
 @Component({
   selector: 'app-branch-register',
@@ -16,14 +17,22 @@ import { BRANCH_FORM_FIELDS } from '../../models/branch-form.model';
     <div class="container mx-auto p-4">
       <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold text-gray-900">Yeni Şube Ekle</h1>
-        <button
-          (click)="navigateBack()"
-          class="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 transition-colors text-sm">
-          Geri Dön
-        </button>
+        <div class="space-x-2">
+          <button
+            (click)="fillTestData()"
+            class="px-4 py-2 text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-300 transition-colors text-sm">
+            Test Verisi Doldur
+          </button>
+          <button
+            (click)="navigateBack()"
+            class="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 transition-colors text-sm">
+            Geri Dön
+          </button>
+        </div>
       </div>
       <div class="bg-gray-50 rounded-lg p-6">
         <app-generic-form
+          #formComponent
           [form]="branchForm"
           [fields]="formFields"
           (formSubmit)="onSubmit()"
@@ -33,6 +42,7 @@ import { BRANCH_FORM_FIELDS } from '../../models/branch-form.model';
   `
 })
 export class BranchRegisterComponent implements OnInit {
+  @ViewChild('formComponent') formComponent!: GenericFormComponent;
   branchForm: FormGroup;
   formFields = BRANCH_FORM_FIELDS;
 
@@ -81,6 +91,26 @@ export class BranchRegisterComponent implements OnInit {
     });
   }
 
+  fillTestData() {
+    const randomNumber = Math.floor(Math.random() * 1000);
+    const testData = {
+      fullName: `Test Yönetici ${randomNumber}`,
+      email: `testyonetici${randomNumber}@test.com`,
+      password: 'Test123!',
+      mobilePhone: `05${Math.floor(Math.random() * 100000000).toString().padStart(8, '0')}`,
+      birthDate: new Date().toISOString().split('T')[0],
+      gender: Math.random() > 0.5 ? 1 : 2, // 1: Erkek, 2: Kadın
+      address: `Test Mahallesi ${randomNumber}, Test Sokak No:${randomNumber}`,
+      notes: 'Test notları',
+      branchName: `Test Şubesi ${randomNumber}`,
+      branchAddress: `Test Şube Mahallesi ${randomNumber}, Test Sokak No:${randomNumber}`,
+      branchPhone: `05${Math.floor(Math.random() * 100000000).toString().padStart(8, '0')}`,
+      schoolId: null // Bu değer loadSchools() çağrısından sonra mevcut okullardan biriyle doldurulabilir
+    };
+
+    this.branchForm.patchValue(testData);
+  }
+
   onSubmit() {
     if (this.branchForm.valid) {
       this.branchService.registerBranch(this.branchForm.value).subscribe({
@@ -88,9 +118,20 @@ export class BranchRegisterComponent implements OnInit {
           this.toastr.success('Şube başarıyla eklendi');
           this.router.navigate(['/branches']);
         },
-        error: (error) => {
-          this.toastr.error(error.error?.message || 'Bir hata oluştu');
-        }
+        error: (error: ErrorResponse) => {
+            console.error('Error response:', error);
+            if (error.errors) {
+              Object.values(error.errors).flat().forEach(message => {
+                this.toastr.error(message);
+              });
+            } else {
+              this.toastr.error(error.message);
+            }
+            this.formComponent.resetSubmitting();
+          },
+          complete: () => {
+            this.formComponent.resetSubmitting();
+          }
       });
     }
   }

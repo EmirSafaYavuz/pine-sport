@@ -28,7 +28,7 @@ export class BranchDetailComponent implements OnInit {
   private fetchBranchDetails(id: number) {
     this.branchService.getBranchById(id).subscribe({
       next: (response) => {
-        this.branch = response.data ?? undefined;
+        this.branch = response ?? undefined;
         this.loading = false;
       },
       error: (err) => {

@@ -36,4 +36,8 @@ export class GenericFormComponent {
     }
     return '';
   }
+
+  resetSubmitting() {
+    this.isSubmitting = false;
+  }
 }
