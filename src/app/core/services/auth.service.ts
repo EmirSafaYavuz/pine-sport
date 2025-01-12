@@ -17,14 +17,12 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(loginData: LoginModel): Observable<Result<LoginResponse>> {
-    return this.http.post<Result<LoginResponse>>(`${this.apiUrl}/auth/login`, loginData)
+  login(loginData: LoginModel): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.apiUrl}/auth/login`, loginData)
       .pipe(
         tap(response => {
-          if (response.success && response.data) {
-            this.setToken(response.data.token);
-            this.setUserData(response.data);
-          }
+            this.setToken(response.token);
+            this.setUserData(response);
         })
       );
   }

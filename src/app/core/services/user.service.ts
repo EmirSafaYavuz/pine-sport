@@ -8,11 +8,11 @@ import { SidebarMenu } from '../models/sidebar-menu.model';
   providedIn: 'root'
 })
 export class UserService {
-  private readonly apiUrl = 'https://localhost:7092/api';
+  private readonly apiUrl = 'https://localhost:7092/api/users';
 
   constructor(private http: HttpClient) { }
 
-  getSidebarMenu(): Observable<Result<SidebarMenu[]>> {
-    return this.http.get<Result<SidebarMenu[]>>(`${this.apiUrl}/user/menu`);
+  getSidebarMenu(): Observable<SidebarMenu[]> {
+    return this.http.get<SidebarMenu[]>(`${this.apiUrl}/menu`);
   }
 }

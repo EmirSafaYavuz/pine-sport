@@ -7,26 +7,166 @@
     </button>
   </header>
 
+
   <!-- Dashboard Metrics -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-    <!-- Example Metric Card -->
     <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-      <h5 class="text-sm text-gray-500 dark:text-gray-400">Total Students</h5>
+      <h5 class="text-sm text-gray-500 dark:text-gray-400">Toplam Öğrenci</h5>
       <p class="text-2xl font-bold text-gray-900 dark:text-white">1,230</p>
+      <p class="text-xs text-green-500">+12% geçen aya göre</p>
     </div>
     <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-      <h5 class="text-sm text-gray-500 dark:text-gray-400">Monthly Income</h5>
-      <p class="text-2xl font-bold text-gray-900 dark:text-white">$15,400</p>
+      <h5 class="text-sm text-gray-500 dark:text-gray-400">Aylık Gelir</h5>
+      <p class="text-2xl font-bold text-gray-900 dark:text-white">₺154,000</p>
+      <p class="text-xs text-green-500">+8% geçen aya göre</p>
     </div>
     <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-      <h5 class="text-sm text-gray-500 dark:text-gray-400">Pending Payments</h5>
-      <p class="text-2xl font-bold text-gray-900 dark:text-white">12</p>
+      <h5 class="text-sm text-gray-500 dark:text-gray-400">Geciken Ödemeler</h5>
+      <p class="text-2xl font-bold text-red-600 dark:text-red-400">12</p>
+      <p class="text-xs text-red-500">Toplam ₺24,600</p>
     </div>
     <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-      <h5 class="text-sm text-gray-500 dark:text-gray-400">New Enrollments</h5>
-      <p class="text-2xl font-bold text-gray-900 dark:text-white">45</p>
+      <h5 class="text-sm text-gray-500 dark:text-gray-400">Aktif Spor Dalları</h5>
+      <p class="text-2xl font-bold text-gray-900 dark:text-white">8</p>
+      <p class="text-xs text-blue-500">245 aktif seans</p>
     </div>
   </div>
+
+  <!-- Öğrenci Takip Section -->
+  <section class="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Öğrenci Takip</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full">
+        <thead>
+          <tr class="bg-gray-100 dark:bg-gray-700">
+            <th class="px-4 py-2">Öğrenci</th>
+            <th class="px-4 py-2">Spor Dalı</th>
+            <th class="px-4 py-2">Son Katılım</th>
+            <th class="px-4 py-2">Devam Durumu</th>
+            <th class="px-4 py-2">Ödeme Durumu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2">Ahmet Yılmaz</td>
+            <td class="px-4 py-2">Yüzme</td>
+            <td class="px-4 py-2">22.03.2024</td>
+            <td class="px-4 py-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full">%90</span></td>
+            <td class="px-4 py-2"><span class="text-green-500">Güncel</span></td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2">Ayşe Kara</td>
+            <td class="px-4 py-2">Basketbol</td>
+            <td class="px-4 py-2">21.03.2024</td>
+            <td class="px-4 py-2"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full">%75</span></td>
+            <td class="px-4 py-2"><span class="text-red-500">Gecikmiş</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Ödeme Takibi Section -->
+  <section class="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Ödeme Takibi</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="border rounded-lg p-4">
+        <h3 class="font-medium mb-2">Yaklaşan Ödemeler</h3>
+        <ul class="space-y-2">
+          <li class="flex justify-between">
+            <span>Mehmet Demir</span>
+            <span class="font-medium">₺1,200</span>
+            <span class="text-sm text-gray-500">25.03.2024</span>
+          </li>
+          <li class="flex justify-between">
+            <span>Zeynep Yıldız</span>
+            <span class="font-medium">₺800</span>
+            <span class="text-sm text-gray-500">27.03.2024</span>
+          </li>
+        </ul>
+      </div>
+      <div class="border rounded-lg p-4">
+        <h3 class="font-medium mb-2">Geciken Ödemeler</h3>
+        <ul class="space-y-2">
+          <li class="flex justify-between text-red-600">
+            <span>Ali Kaya</span>
+            <span class="font-medium">₺1,500</span>
+            <span class="text-sm">15 gün gecikme</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gelişim Takibi Section -->
+  <section class="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Gelişim Takibi</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="border rounded-lg p-4">
+        <h3 class="font-medium mb-2">Yüzme - İleri Seviye</h3>
+        <ul class="space-y-2">
+          <li class="text-sm">
+            <span class="font-medium">50m Serbest:</span>
+            <span class="text-green-500">32.4 sn (-2.1 sn)</span>
+          </li>
+          <li class="text-sm">
+            <span class="font-medium">100m Kurbağalama:</span>
+            <span class="text-green-500">1:24.5 (-3.2 sn)</span>
+          </li>
+        </ul>
+      </div>
+      <div class="border rounded-lg p-4">
+        <h3 class="font-medium mb-2">Basketbol - U14</h3>
+        <ul class="space-y-2">
+          <li class="text-sm">
+            <span class="font-medium">Serbest Atış:</span>
+            <span class="text-green-500">%75 (+5%)</span>
+          </li>
+          <li class="text-sm">
+            <span class="font-medium">3 Sayı:</span>
+            <span class="text-green-500">%35 (+3%)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Raporlama Section -->
+  <section class="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Raporlama</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="border rounded-lg p-4">
+        <h3 class="font-medium mb-2">Spor Dalı Dağılımı</h3>
+        <ul class="space-y-2">
+          <li class="flex justify-between">
+            <span>Yüzme</span>
+            <span class="font-medium">420 öğrenci</span>
+          </li>
+          <li class="flex justify-between">
+            <span>Basketbol</span>
+            <span class="font-medium">315 öğrenci</span>
+          </li>
+          <li class="flex justify-between">
+            <span>Futbol</span>
+            <span class="font-medium">280 öğrenci</span>
+          </li>
+        </ul>
+      </div>
+      <div class="border rounded-lg p-4">
+        <h3 class="font-medium mb-2">Aylık Gelir Dağılımı</h3>
+        <ul class="space-y-2">
+          <li class="flex justify-between">
+            <span>Mart 2024</span>
+            <span class="font-medium">₺154,000</span>
+          </li>
+          <li class="flex justify-between">
+            <span>Şubat 2024</span>
+            <span class="font-medium">₺142,500</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <!-- Charts Section -->
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">

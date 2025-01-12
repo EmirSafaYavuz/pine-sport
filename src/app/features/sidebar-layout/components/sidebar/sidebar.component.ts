@@ -49,10 +49,8 @@ export class SidebarComponent implements OnInit {
 
   private loadMenuItems(): void {
     this.userService.getSidebarMenu().subscribe({
-      next: (response: Result<SidebarMenu[]>) => {
-        if (response.success) {
-          this.menuItems = response.data || [];
-        }
+      next: (response: SidebarMenu[]) => {
+        this.menuItems = response || [];
       },
       error: (error: any) => {
         console.error('Error loading menu items:', error);

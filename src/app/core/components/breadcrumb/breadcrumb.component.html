@@ -1,4 +1,4 @@
-<nav class="flex my-2" aria-label="Breadcrumb">
+<nav class="flex mt-2" aria-label="Breadcrumb">
   <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
     <li *ngFor="let item of breadcrumbs; let last = last" class="inline-flex items-center">
       <a (click)="item.url === '/' ? navigateToHome() : null"

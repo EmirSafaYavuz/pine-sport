@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {
     this.loginForm = this.fb.group({
-      email: ['ydrmzz03@gmail.com', [Validators.required, Validators.email]],
-      password: ['Yagmur69!', Validators.required]
+      email: ['emirsafayavuz@gmail.com', [Validators.required, Validators.email]],
+      password: ['Emirsafa34!', Validators.required]
     });
   }
 
@@ -60,12 +60,8 @@ export class LoginComponent implements OnInit {
 
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
-          if (response.success && response.data) {
-            const roleBasedRoute = this.getRoleBasedRoute(response.data.role);
+            const roleBasedRoute = this.getRoleBasedRoute(response.role);
             this.router.navigate([roleBasedRoute]);
-          } else {
-            this.errorMessage = response.message || 'Giriş başarısız';
-          }
         },
         error: (error) => {
           this.errorMessage = 'E-posta veya şifre hatalı.';
