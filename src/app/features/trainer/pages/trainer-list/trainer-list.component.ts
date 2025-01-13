@@ -45,9 +45,7 @@ export class TrainerListComponent implements OnInit {
   loadTrainers() {
     this.trainerService.getTrainers().subscribe({
       next: (result) => {
-        if (result.success) {
-          this.rowData = result.data ?? [];
-        }
+        this.rowData = result ?? [];
       },
       error: (error) => {
         console.error('Error loading trainers:', error);

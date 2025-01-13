@@ -1,0 +1,205 @@
+<main class="p-4 h-auto">
+  <!-- Page Header -->
+  <header class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Raporlar</h1>
+    <div class="flex gap-2">
+      <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+        PDF Export
+      </button>
+      <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+        Excel Export
+      </button>
+    </div>
+  </header>
+
+  <!-- Report Filters -->
+  <section class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div>
+        <label class="block text-sm font-medium mb-2">Tarih Aralığı</label>
+        <select class="w-full px-3 py-2 border rounded-lg">
+          <option>Son 7 Gün</option>
+          <option>Son 30 Gün</option>
+          <option>Son 3 Ay</option>
+          <option>Özel</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-2">Spor Dalı</label>
+        <select class="w-full px-3 py-2 border rounded-lg">
+          <option>Tümü</option>
+          <option>Yüzme</option>
+          <option>Basketbol</option>
+          <option>Futbol</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-2">Şube</label>
+        <select class="w-full px-3 py-2 border rounded-lg">
+          <option>Tüm Şubeler</option>
+          <option>Merkez</option>
+          <option>Doğu</option>
+          <option>Batı</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-2">Rapor Tipi</label>
+        <select class="w-full px-3 py-2 border rounded-lg">
+          <option>Finansal Rapor</option>
+          <option>Öğrenci Performans</option>
+          <option>Devam Durumu</option>
+          <option>Gelişim Raporu</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- Financial Summary -->
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <h2 class="text-xl font-semibold mb-4">Finansal Özet</h2>
+      <div class="space-y-4">
+        <div class="flex justify-between items-center">
+          <span class="text-gray-600">Toplam Gelir</span>
+          <span class="font-bold text-green-600">₺245,850</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-gray-600">Toplam Gider</span>
+          <span class="font-bold text-red-600">₺98,340</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-gray-600">Net Kar</span>
+          <span class="font-bold text-blue-600">₺147,510</span>
+        </div>
+        <div id="financial-chart" class="h-64">
+          <!-- Chart will be rendered here -->
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <h2 class="text-xl font-semibold mb-4">Öğrenci İstatistikleri</h2>
+      <div class="space-y-4">
+        <div class="flex justify-between items-center">
+          <span class="text-gray-600">Toplam Öğrenci</span>
+          <span class="font-bold">1,245</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-gray-600">Aktif Öğrenci</span>
+          <span class="font-bold text-green-600">1,180</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-gray-600">Pasif Öğrenci</span>
+          <span class="font-bold text-red-600">65</span>
+        </div>
+        <div id="student-stats-chart" class="h-64">
+          <!-- Chart will be rendered here -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Performance Analysis -->
+  <section class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
+    <h2 class="text-xl font-semibold mb-4">Performans Analizi</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full">
+        <thead>
+          <tr class="bg-gray-100 dark:bg-gray-700">
+            <th class="px-4 py-2 text-left">Spor Dalı</th>
+            <th class="px-4 py-2 text-left">Öğrenci Sayısı</th>
+            <th class="px-4 py-2 text-left">Ortalama Devam</th>
+            <th class="px-4 py-2 text-left">Başarı Oranı</th>
+            <th class="px-4 py-2 text-left">Gelişim</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-3">Yüzme</td>
+            <td class="px-4 py-3">420</td>
+            <td class="px-4 py-3">%92</td>
+            <td class="px-4 py-3">%88</td>
+            <td class="px-4 py-3">
+              <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full">↑ %15</span>
+            </td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-3">Basketbol</td>
+            <td class="px-4 py-3">315</td>
+            <td class="px-4 py-3">%85</td>
+            <td class="px-4 py-3">%82</td>
+            <td class="px-4 py-3">
+              <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full">↑ %12</span>
+            </td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-3">Futbol</td>
+            <td class="px-4 py-3">280</td>
+            <td class="px-4 py-3">%88</td>
+            <td class="px-4 py-3">%85</td>
+            <td class="px-4 py-3">
+              <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full">↑ %8</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Detailed Reports -->
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <h2 class="text-xl font-semibold mb-4">Şube Performansı</h2>
+      <div class="space-y-3">
+        <div class="flex justify-between items-center">
+          <span>Merkez Şube</span>
+          <span class="font-bold text-green-600">%94</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>Doğu Şube</span>
+          <span class="font-bold text-green-600">%88</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>Batı Şube</span>
+          <span class="font-bold text-yellow-600">%82</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <h2 class="text-xl font-semibold mb-4">Eğitmen Performansı</h2>
+      <div class="space-y-3">
+        <div class="flex justify-between items-center">
+          <span>Ali Yılmaz</span>
+          <span class="font-bold text-green-600">%96</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>Ayşe Kara</span>
+          <span class="font-bold text-green-600">%92</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>Mehmet Demir</span>
+          <span class="font-bold text-yellow-600">%85</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <h2 class="text-xl font-semibold mb-4">Müşteri Memnuniyeti</h2>
+      <div class="space-y-3">
+        <div class="flex justify-between items-center">
+          <span>Genel Memnuniyet</span>
+          <span class="font-bold text-green-600">4.8/5.0</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>Eğitmen Değerlendirme</span>
+          <span class="font-bold text-green-600">4.7/5.0</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>Tesis Değerlendirme</span>
+          <span class="font-bold text-green-600">4.6/5.0</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

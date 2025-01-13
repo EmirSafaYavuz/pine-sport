@@ -1,1 +1,91 @@
-<p>student-dashboard works!</p>
+<main class="p-4 h-auto">
+  <header class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Öğrenci Paneli</h1>
+  </header>
+
+  <!-- Student Stats -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+      <h5 class="text-sm text-gray-500 dark:text-gray-400">Devam Durumu</h5>
+      <p class="text-2xl font-bold text-gray-900 dark:text-white">%92</p>
+      <p class="text-xs text-green-500">Son 30 gün</p>
+    </div>
+    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+      <h5 class="text-sm text-gray-500 dark:text-gray-400">Kalan Dersler</h5>
+      <p class="text-2xl font-bold text-gray-900 dark:text-white">8</p>
+      <p class="text-xs text-yellow-500">12 Nisan'da bitiyor</p>
+    </div>
+    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+      <h5 class="text-sm text-gray-500 dark:text-gray-400">Sonraki Ders</h5>
+      <p class="text-2xl font-bold text-gray-900 dark:text-white">Bugün</p>
+      <p class="text-xs text-blue-500">15:30 - Yüzme</p>
+    </div>
+    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+      <h5 class="text-sm text-gray-500 dark:text-gray-400">Başarı Puanı</h5>
+      <p class="text-2xl font-bold text-gray-900 dark:text-white">85</p>
+      <p class="text-xs text-green-500">+5 puan artış</p>
+    </div>
+  </div>
+
+  <!-- Performance Tracking -->
+  <section class="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Performans Takibi</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="border rounded-lg p-4">
+        <h3 class="font-medium mb-2">Yüzme Performansı</h3>
+        <ul class="space-y-2">
+          <li class="flex justify-between">
+            <span>50m Serbest</span>
+            <span class="font-medium text-green-500">32.4 sn (-2.1)</span>
+          </li>
+          <li class="flex justify-between">
+            <span>100m Kurbağalama</span>
+            <span class="font-medium text-green-500">1:24.5 (-3.2)</span>
+          </li>
+        </ul>
+      </div>
+      <div class="border rounded-lg p-4">
+        <h3 class="font-medium mb-2">Hedefler</h3>
+        <ul class="space-y-2">
+          <li class="flex items-center">
+            <div class="w-full bg-gray-200 rounded-full h-2.5 mr-2">
+              <div class="bg-blue-600 h-2.5 rounded-full" style="width: 75%"></div>
+            </div>
+            <span class="text-sm">50m Hedefi: 30 sn</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Weekly Schedule -->
+  <section class="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Haftalık Program</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full">
+        <thead>
+          <tr class="bg-gray-100 dark:bg-gray-700">
+            <th class="px-4 py-2">Gün</th>
+            <th class="px-4 py-2">Saat</th>
+            <th class="px-4 py-2">Branş</th>
+            <th class="px-4 py-2">Antrenör</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2">Pazartesi</td>
+            <td class="px-4 py-2">15:30</td>
+            <td class="px-4 py-2">Yüzme</td>
+            <td class="px-4 py-2">Ahmet Hoca</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2">Çarşamba</td>
+            <td class="px-4 py-2">16:00</td>
+            <td class="px-4 py-2">Yüzme</td>
+            <td class="px-4 py-2">Mehmet Hoca</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>

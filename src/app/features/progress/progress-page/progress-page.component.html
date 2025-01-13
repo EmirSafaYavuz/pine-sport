@@ -1,0 +1,180 @@
+<main class="p-4 h-auto">
+  <!-- Page Header -->
+  <header class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Öğrenci Gelişim Takibi</h1>
+    <div class="flex gap-2">
+      <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+        Yeni Ölçüm Ekle
+      </button>
+      <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+        Rapor Oluştur
+      </button>
+    </div>
+  </header>
+
+  <!-- Filters -->
+  <section class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div>
+        <label class="block text-sm font-medium mb-2">Öğrenci</label>
+        <select class="w-full px-3 py-2 border rounded-lg">
+          <option>Tüm Öğrenciler</option>
+          <option>Ahmet Yılmaz</option>
+          <option>Ayşe Kara</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-2">Spor Dalı</label>
+        <select class="w-full px-3 py-2 border rounded-lg">
+          <option>Tümü</option>
+          <option>Yüzme</option>
+          <option>Basketbol</option>
+          <option>Futbol</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-2">Tarih Aralığı</label>
+        <select class="w-full px-3 py-2 border rounded-lg">
+          <option>Son 30 Gün</option>
+          <option>Son 3 Ay</option>
+          <option>Son 6 Ay</option>
+          <option>1 Yıl</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-2">Metrik</label>
+        <select class="w-full px-3 py-2 border rounded-lg">
+          <option>Tüm Metrikler</option>
+          <option>Hız</option>
+          <option>Dayanıklılık</option>
+          <option>Teknik</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- Performance Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+      <h5 class="text-sm text-gray-500 dark:text-gray-400">Ortalama İlerleme</h5>
+      <p class="text-2xl font-bold text-gray-900 dark:text-white">%15</p>
+      <p class="text-xs text-green-500">Son 30 günde</p>
+    </div>
+    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+      <h5 class="text-sm text-gray-500 dark:text-gray-400">Hedef Başarısı</h5>
+      <p class="text-2xl font-bold text-gray-900 dark:text-white">%82</p>
+      <p class="text-xs text-blue-500">8 hedeften 6'sı tamamlandı</p>
+    </div>
+    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+      <h5 class="text-sm text-gray-500 dark:text-gray-400">Katılım Oranı</h5>
+      <p class="text-2xl font-bold text-green-600">%95</p>
+      <p class="text-xs text-green-500">Son 30 günde</p>
+    </div>
+    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+      <h5 class="text-sm text-gray-500 dark:text-gray-400">Performans Skoru</h5>
+      <p class="text-2xl font-bold text-gray-900 dark:text-white">8.5/10</p>
+      <p class="text-xs text-green-500">+0.5 artış</p>
+    </div>
+  </div>
+
+  <!-- Progress Charts -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <h2 class="text-xl font-semibold mb-4">Gelişim Grafiği</h2>
+      <div class="h-80" id="development-chart">
+        <!-- Chart will be rendered here -->
+      </div>
+    </div>
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <h2 class="text-xl font-semibold mb-4">Performans Metrikleri</h2>
+      <div class="h-80" id="metrics-chart">
+        <!-- Chart will be rendered here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Latest Measurements -->
+  <section class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-semibold">Son Ölçümler</h2>
+      <button class="text-blue-600 hover:text-blue-800">Tümünü Gör</button>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="min-w-full">
+        <thead>
+          <tr class="bg-gray-100 dark:bg-gray-700">
+            <th class="px-4 py-2 text-left">Öğrenci</th>
+            <th class="px-4 py-2 text-left">Tarih</th>
+            <th class="px-4 py-2 text-left">Metrik</th>
+            <th class="px-4 py-2 text-left">Önceki</th>
+            <th class="px-4 py-2 text-left">Yeni</th>
+            <th class="px-4 py-2 text-left">Gelişim</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-3">Ahmet Yılmaz</td>
+            <td class="px-4 py-3">22.03.2024</td>
+            <td class="px-4 py-3">50m Serbest</td>
+            <td class="px-4 py-3">32.4 sn</td>
+            <td class="px-4 py-3">30.2 sn</td>
+            <td class="px-4 py-3">
+              <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                ↓ 2.2 sn
+              </span>
+            </td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-3">Ayşe Kara</td>
+            <td class="px-4 py-3">21.03.2024</td>
+            <td class="px-4 py-3">Serbest Atış</td>
+            <td class="px-4 py-3">%65</td>
+            <td class="px-4 py-3">%75</td>
+            <td class="px-4 py-3">
+              <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                ↑ %10
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Goals and Targets -->
+  <section class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+    <h2 class="text-xl font-semibold mb-4">Hedefler ve Başarılar</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="border rounded-lg p-4">
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="font-medium">50m Serbest</h3>
+          <span class="text-sm text-green-600">%90</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2.5">
+          <div class="bg-green-600 h-2.5 rounded-full" style="width: 90%"></div>
+        </div>
+        <p class="text-sm text-gray-500 mt-2">Hedef: 29 sn</p>
+      </div>
+      <div class="border rounded-lg p-4">
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="font-medium">Serbest Atış</h3>
+          <span class="text-sm text-yellow-600">%75</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2.5">
+          <div class="bg-yellow-600 h-2.5 rounded-full" style="width: 75%"></div>
+        </div>
+        <p class="text-sm text-gray-500 mt-2">Hedef: %80</p>
+      </div>
+      <div class="border rounded-lg p-4">
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="font-medium">Dayanıklılık</h3>
+          <span class="text-sm text-blue-600">%85</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2.5">
+          <div class="bg-blue-600 h-2.5 rounded-full" style="width: 85%"></div>
+        </div>
+        <p class="text-sm text-gray-500 mt-2">Hedef: 45 dk</p>
+      </div>
+    </div>
+  </section>
+</main>

@@ -37,8 +37,8 @@ export const TRAINER_FORM_FIELDS: FormField[] = [
     label: 'Cinsiyet',
     type: 'select',
     options: [
-      { value: Gender.Male, label: 'Erkek' },
-      { value: Gender.Female, label: 'Kadın' }
+      { value: 1, label: 'Erkek' },
+      { value: 2, label: 'Kadın' }
     ],
     required: true
   },

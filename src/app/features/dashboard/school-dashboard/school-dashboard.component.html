@@ -1,1 +1,74 @@
-<p>school-dashboard works!</p>
+<main class="p-4 h-auto">
+  <header class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Okul Yönetim Paneli</h1>
+  </header>
+
+  <!-- School Stats -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+      <h5 class="text-sm text-gray-500 dark:text-gray-400">Toplam Öğrenci</h5>
+      <p class="text-2xl font-bold text-gray-900 dark:text-white">856</p>
+      <p class="text-xs text-green-500">+12% geçen döneme göre</p>
+    </div>
+    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+      <h5 class="text-sm text-gray-500 dark:text-gray-400">Aktif Branşlar</h5>
+      <p class="text-2xl font-bold text-gray-900 dark:text-white">6</p>
+      <p class="text-xs text-blue-500">24 antrenör</p>
+    </div>
+    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+      <h5 class="text-sm text-gray-500 dark:text-gray-400">Doluluk Oranı</h5>
+      <p class="text-2xl font-bold text-gray-900 dark:text-white">%85</p>
+      <p class="text-xs text-yellow-500">Kapasite: 1000</p>
+    </div>
+    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+      <h5 class="text-sm text-gray-500 dark:text-gray-400">Başarı Oranı</h5>
+      <p class="text-2xl font-bold text-gray-900 dark:text-white">%92</p>
+      <p class="text-xs text-green-500">+5% geçen aya göre</p>
+    </div>
+  </div>
+
+  <!-- Branch Performance -->
+  <section class="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Branş Performansı</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="border rounded-lg p-4">
+        <h3 class="font-medium mb-2">Yüzme</h3>
+        <div class="space-y-2">
+          <div class="flex justify-between items-center">
+            <span>Öğrenci Sayısı</span>
+            <span class="font-medium">245</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 85%"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Add more branches here -->
+    </div>
+  </section>
+
+  <!-- Schedule Overview -->
+  <section class="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Günlük Program</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full">
+        <thead>
+          <tr class="bg-gray-100 dark:bg-gray-700">
+            <th class="px-4 py-2">Saat</th>
+            <th class="px-4 py-2">Branş</th>
+            <th class="px-4 py-2">Antrenör</th>
+            <th class="px-4 py-2">Doluluk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2">09:00</td>
+            <td class="px-4 py-2">Yüzme</td>
+            <td class="px-4 py-2">Ahmet Yılmaz</td>
+            <td class="px-4 py-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full">18/20</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>

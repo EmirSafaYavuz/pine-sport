@@ -13,6 +13,9 @@ export const routes: Routes = [
       { path: 'trainers', loadChildren: () => import('./features/trainer/trainer.routes').then(m => m.TRAINER_ROUTES) },
       { path: 'students', loadChildren: () => import('./features/student/student.routes').then(m => m.STUDENT_ROUTES) },
       { path: 'parents', loadChildren: () => import('./features/parent/parent.routes').then(m => m.PARENT_ROUTES) },
+      { path: 'payments', loadChildren: () => import('./features/payments/payments.routes').then(m => m.PAYMENTS_ROUTES) },
+      { path: 'reports', loadChildren: () => import('./features/reports/reports.routes').then(m => m.REPORTS_ROUTES) },
+      { path: 'progress', loadChildren: () => import('./features/progress/progress.routes').then(m => m.PROGRESS_ROUTES) },
     ]
   }
 ];
